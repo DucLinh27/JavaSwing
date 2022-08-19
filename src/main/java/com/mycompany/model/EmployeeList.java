@@ -120,6 +120,14 @@ public class EmployeeList {
         }
         return null;
     }
+    public Employee findByName(String employeeName){
+        for(Employee employee : list){
+            if(employee.getName().equals(employeeName)){
+                return employee;
+            }  
+        }
+        return null;
+    }
     
     public boolean deleteById(String employeeId){
         for(Employee employee : list){

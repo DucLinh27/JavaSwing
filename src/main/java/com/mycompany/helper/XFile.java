@@ -32,13 +32,12 @@ public class XFile {
 
     public static void writeObject(String path, Object obj) throws Exception {
         try (
-                FileOutputStream fos = new FileOutputStream(path);  
-                ObjectOutputStream oos = new ObjectOutputStream(fos);) {
+                 FileOutputStream fos = new FileOutputStream(path);  ObjectOutputStream oos = new ObjectOutputStream(fos);) {
             oos.writeObject(obj);
 
         }
     }
-    
+
 //    public void saveEmployee(ArrayList<Employee> list){
 //        try(PrintWriter pw = new PrintWriter(new File("Employee.dat")) ) {
 //            for(Employee emp : list){

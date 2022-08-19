@@ -19,7 +19,7 @@ public class Validator {
         boolean ok = true;
         if (field.getText().equals("")) {
             sb.append(msg).append("\n");
-            field.setBackground(Color.red);
+            field.setBackground(Color.gray);
             ok = false;
         } else {
             field.setBackground(Color.white);
@@ -37,12 +37,12 @@ public class Validator {
             int age = Integer.parseInt(field.getText());
             if (age < 18) {
                 sb.append("Invalid age(18-55)\n");
-                field.setBackground(Color.red);
+                field.setBackground(Color.gray);
                 ok = false;
             }
         } catch (Exception e) {
             sb.append("Invalid age(default number)\n");
-            field.setBackground(Color.red);
+            field.setBackground(Color.gray);
             ok = false;
         }
         if (ok) {
@@ -61,12 +61,12 @@ public class Validator {
             double salary = Double.parseDouble(field.getText());
             if (salary < 1000) {
                 sb.append("Invalid salary(smallest 1000)\n");
-                field.setBackground(Color.red);
+                field.setBackground(Color.gray);
                 ok = false;
             }
         } catch (Exception e) {
             sb.append("Invalid salary(default number)\n");
-            field.setBackground(Color.red);
+            field.setBackground(Color.gray);
             ok = false;
         }
         if (ok) {
@@ -86,8 +86,8 @@ public class Validator {
         Matcher matcher = pattern.matcher(field.getText());
 
         if (!matcher.find()) {
-            sb.append("Invalid salary \n");
-            field.setBackground(Color.red);
+            sb.append("Invalid email \n");
+            field.setBackground(Color.gray);
             ok = false;
         }
 

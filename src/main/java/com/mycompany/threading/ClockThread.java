@@ -5,6 +5,7 @@
 package com.mycompany.threading;
 
 import java.text.SimpleDateFormat;
+import static java.time.OffsetTime.now;
 import java.util.Date;
 import javax.swing.JLabel;
 
@@ -12,28 +13,28 @@ import javax.swing.JLabel;
  *
  * @author ducli
  */
-public class ClockThread extends Thread {
-
+public class ClockThread extends Thread{
     private JLabel lbl;
-
-    public ClockThread(JLabel lbl) {
-        this.lbl = lbl;
+    
+    public ClockThread(JLabel lbl){
+        this.lbl = lbl;  
     }
-
-    public void run() {
+    
+    public void run(){
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss aa");
-
-        while (true) {
+        while(true){
             Date now = new Date();
             String st = sdf.format(now);
-
+            
             lbl.setText(st);
-
+            
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException e) {
+                
+            } catch (InterruptedException ex) {
             }
-
+        
         }
     }
+    
 }
