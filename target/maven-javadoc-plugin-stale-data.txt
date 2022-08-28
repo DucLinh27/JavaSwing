@@ -1,0 +1,55 @@
+@options
+@packages
+@argfile
+-encoding
+'UTF-8'
+-protected
+-source
+'18'
+-sourcepath
+'C:/Users/ducli/Documents/NetBeansProjects/employeeManager/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2022. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/ducli/Documents/NetBeansProjects/employeeManager/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'employeeManager 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'employeeManager 1.0-SNAPSHOT API'
+com.mycompany.employeemanager
+com.mycompany.helper
+com.mycompany.model
+com.mycompany.threading
+'C:/Users/ducli/Documents/NetBeansProjects/employeeManager/src/main/java/com/mycompany/employeemanager/EmployeeManagerForm.java'
+'C:/Users/ducli/Documents/NetBeansProjects/employeeManager/src/main/java/com/mycompany/helper/Validator.java'
+'C:/Users/ducli/Documents/NetBeansProjects/employeeManager/src/main/java/com/mycompany/helper/XFile.java'
+'C:/Users/ducli/Documents/NetBeansProjects/employeeManager/src/main/java/com/mycompany/model/Employee.java'
+'C:/Users/ducli/Documents/NetBeansProjects/employeeManager/src/main/java/com/mycompany/model/EmployeeList.java'
+'C:/Users/ducli/Documents/NetBeansProjects/employeeManager/src/main/java/com/mycompany/threading/ClockThread.java'
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\src\main\java = 1659512104410
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\allclasses-index.html = 1661483245093
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\allpackages-index.html = 1661483245096
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\copy.svg = 1661483245130
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\element-list = 1661483244983
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\help-doc.html = 1661483245125
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\index-all.html = 1661483245120
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\index.html = 1661483245082
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\jquery-ui.overrides.css = 1661483245162
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\member-search-index.js = 1661483245101
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\module-search-index.js = 1661483245097
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\overview-summary.html = 1661483245121
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\overview-tree.html = 1661483245078
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\package-search-index.js = 1661483245098
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\script.js = 1661483245129
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\search.js = 1661483245133
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\serialized-form.html = 1661483245040
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\stylesheet.css = 1661483245127
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\tag-search-index.js = 1661483245103
+C:\Users\ducli\Documents\NetBeansProjects\employeeManager\target\site\apidocs\type-search-index.js = 1661483245100

@@ -10,56 +10,65 @@ import com.mycompany.model.EmployeeList;
 import com.mycompany.threading.ClockThread;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ducli
  */
 public class EmployeeManagerForm extends javax.swing.JFrame {
+
     private DefaultTableModel tblModel = null;
-    private EmployeeList empList = new  EmployeeList();
+    private EmployeeList empList = new EmployeeList();
     private boolean isEditMode = false;
+
     /**
      * Creates new form EmployeeManagerForm
      */
     public EmployeeManagerForm() {
         initComponents();
         
+        // Set location
         setLocationRelativeTo(null);
         
+        //Create Table
         initTable();
-        
+
 //        initEmployeeData();
+// Load data
         loadEmployeeData();
         
+        //Display first_row
         btnFirstActionPerformed(null);
-        
+        //Create Clock
         initClock();
     }
-    
-     private void loadEmployeeData() {
-         try {
-             empList.loadFromFile();
-             empList.renderToTable(tblModel);
-         } catch (Exception ex) {
-             ex.printStackTrace();
-             JOptionPane.showMessageDialog(this, "Error" + ex.getMessage());
-         }
-         
+
+    //Load Data
+    private void loadEmployeeData() {
+        try {
+            empList.loadFromFile();
+            empList.renderToTable(tblModel);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error" + ex.getMessage());
+        }
+
     }
 
+    // create Clock
     private void initClock() {
         ClockThread th = new ClockThread(lblClock);
         th.start();
     }
-   
-    
 
-    public void initTable(){
+    // create table
+    public void initTable() {
         tblModel = new DefaultTableModel();
         tblModel.setColumnIdentifiers(new Object[]{"ID", "Name", "Age", "Email", "Salary"});
-        
+
         tblEmployees.setModel(tblModel);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,6 +96,7 @@ public class EmployeeManagerForm extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         btnFirst = new javax.swing.JButton();
         btnPrevious = new javax.swing.JButton();
@@ -167,25 +177,37 @@ public class EmployeeManagerForm extends javax.swing.JFrame {
             }
         });
 
+        btnAdd.setBackground(new java.awt.Color(51, 51, 51));
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnNew, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNew, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSave)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -193,8 +215,8 @@ public class EmployeeManagerForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearch)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnExit)
+                .addContainerGap())
         );
 
         btnFirst.setText("|<");
@@ -266,36 +288,33 @@ public class EmployeeManagerForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblClock, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Age, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Salary, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(EmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(btnFirst)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnPrevious)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnNext)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblStatus)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(Name, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Age, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Email, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Salary, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EmployeeId, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmployeeID, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(lblStatus)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -334,7 +353,7 @@ public class EmployeeManagerForm extends javax.swing.JFrame {
                             .addComponent(Salary)
                             .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -354,31 +373,34 @@ public class EmployeeManagerForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEmployeeIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmployeeIDActionPerformed
-        
+
     }//GEN-LAST:event_txtEmployeeIDActionPerformed
 
+    // New button
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         txtName.setText("");
         txtEmployeeID.setText("");
         txtAge.setText("");
         txtEmail.setText("");
         txtSalary.setText("");
-        
         isEditMode = false;
     }//GEN-LAST:event_btnNewActionPerformed
 
+    // Save button
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try {
             StringBuilder sb = new StringBuilder();
             
+            //Validate
             Validator.checkEmpty(txtEmployeeID, sb, "Please fill in this field");
             Validator.checkEmpty(txtName, sb, "Please fill in this field");
+            Validator.checkName(txtName, sb);
             Validator.checkAge(txtAge, sb);
             Validator.checkSalary(txtSalary, sb);
             Validator.checkEmail(txtEmail, sb);
-            
-            if(sb.length() > 0){
-                JOptionPane.showMessageDialog(this, sb.toString(),"Invalid Data", JOptionPane.ERROR_MESSAGE);
+
+            if (sb.length() > 0) {
+                JOptionPane.showMessageDialog(this, sb.toString(), "Invalid Data", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             Employee emp = new Employee();
@@ -387,124 +409,171 @@ public class EmployeeManagerForm extends javax.swing.JFrame {
             emp.setAge(Integer.parseInt(txtAge.getText()));
             emp.setEmail(txtEmail.getText());
             emp.setSalary(Float.parseFloat(txtSalary.getText()));
-            
-            if(isEditMode){
-                if(empList.findByID(emp.getEmployeeID())== null){
-                    JOptionPane.showConfirmDialog(this, "Employee id is not existed");
+
+                if (empList.findByID(emp.getEmployeeID()) == null) {
+                    JOptionPane.showMessageDialog(this, "EmployeeID is not existed");
                     return;
                 }
                 empList.update(emp);
-            }else{
-                if(empList.findByID(emp.getEmployeeID())!= null){
-                    JOptionPane.showConfirmDialog(this, "Employee id is existed and can't insert new employee");
-                    return;
-                }
-                empList.add(emp);
-            }
-            
-            
+
             btnNewActionPerformed(evt);
             empList.renderToTable(tblModel);
-            JOptionPane.showMessageDialog(this,"Employee saved");
-            
+            JOptionPane.showMessageDialog(this, "Employee saved");
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
+    // Exit button
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         try {
             empList.saveToFile();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error: "+ ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
         }
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
+    // Delete button
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         try {
             boolean isOk = empList.deleteById(txtEmployeeID.getText());
-            if(isOk){
+            if (isOk) {
                 empList.renderToTable(tblModel);
-                JOptionPane.showMessageDialog(this,"Employee deleted!");
-            }else
+                JOptionPane.showMessageDialog(this, "Employee deleted!");
+            } else {
                 JOptionPane.showMessageDialog(this, "Employee Id is not existed or delete fail!");
-            
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    // Search button
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         try {
             Employee emp = empList.findByID(txtEmployeeID.getText());
-            
-            if(emp != null){
+
+            if (emp != null) {
                 fillEmployeeToForm(emp);
-            }else
+            } else {
                 JOptionPane.showMessageDialog(this, "Employee Id is not existed or delete fail!");
-            
+            }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
+    // Display data on form
     private void fillEmployeeToForm(Employee emp) {
         isEditMode = true;
         txtName.setText(emp.getName());
-        txtAge.setText("" +emp.getAge());
+        txtAge.setText("" + emp.getAge());
         txtEmail.setText(emp.getEmail());
-        txtSalary.setText("" +emp.getSalary());
+        txtSalary.setText("" + emp.getSalary());
         txtEmployeeID.setText(emp.getEmployeeID());
     }
 
+    // < first button
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-       empList.first();
-       lblStatus.setText(empList.getCurrentEmployeeInfo());
-       Employee emp = empList.getCurrentEmployee();
-       fillEmployeeToForm(emp);
-       tblEmployees.setRowSelectionInterval(empList.getCurrentEmployeeIndex(), empList.getCurrentEmployeeIndex());
+        empList.first();
+        lblStatus.setText(empList.getCurrentEmployeeInfo());
+        Employee emp = empList.getCurrentEmployee();
+        fillEmployeeToForm(emp);
+        tblEmployees.setRowSelectionInterval(empList.getCurrentEmployeeIndex(), empList.getCurrentEmployeeIndex());
     }//GEN-LAST:event_btnFirstActionPerformed
 
+    // << previous button
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
         empList.previous();
-       lblStatus.setText(empList.getCurrentEmployeeInfo());
-       Employee emp = empList.getCurrentEmployee();
-       fillEmployeeToForm(emp);
-       tblEmployees.setRowSelectionInterval(empList.getCurrentEmployeeIndex(), empList.getCurrentEmployeeIndex());
+        lblStatus.setText(empList.getCurrentEmployeeInfo());
+        Employee emp = empList.getCurrentEmployee();
+        fillEmployeeToForm(emp);
+        tblEmployees.setRowSelectionInterval(empList.getCurrentEmployeeIndex(), empList.getCurrentEmployeeIndex());
     }//GEN-LAST:event_btnPreviousActionPerformed
 
+    // > next button
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         empList.next();
-       lblStatus.setText(empList.getCurrentEmployeeInfo());
-       Employee emp = empList.getCurrentEmployee();
-       fillEmployeeToForm(emp);
-       tblEmployees.setRowSelectionInterval(empList.getCurrentEmployeeIndex(), empList.getCurrentEmployeeIndex());
+        lblStatus.setText(empList.getCurrentEmployeeInfo());
+        Employee emp = empList.getCurrentEmployee();
+        fillEmployeeToForm(emp);
+        tblEmployees.setRowSelectionInterval(empList.getCurrentEmployeeIndex(), empList.getCurrentEmployeeIndex());
     }//GEN-LAST:event_btnNextActionPerformed
 
+    // >> Last button
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         empList.last();
-       lblStatus.setText(empList.getCurrentEmployeeInfo());
-       Employee emp = empList.getCurrentEmployee();
-       fillEmployeeToForm(emp);
-       tblEmployees.setRowSelectionInterval(empList.getCurrentEmployeeIndex(), empList.getCurrentEmployeeIndex());
+        lblStatus.setText(empList.getCurrentEmployeeInfo());
+        Employee emp = empList.getCurrentEmployee();
+        fillEmployeeToForm(emp);
+        tblEmployees.setRowSelectionInterval(empList.getCurrentEmployeeIndex(), empList.getCurrentEmployeeIndex());
     }//GEN-LAST:event_btnLastActionPerformed
 
+    // Click table
     private void tblEmployeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeesMouseClicked
         int row = tblEmployees.getSelectedRow();
-        
-        if(row >= 0){
-            String empId  = (String)tblEmployees.getValueAt(row, 0);
-            
+
+        if (row >= 0) {
+            String empId = (String) tblEmployees.getValueAt(row, 0);
+
             Employee emp = empList.findByID(empId);
-            if(emp != null){
+            if (emp != null) {
                 fillEmployeeToForm(emp);
-                
+
                 empList.setCurrentEmployee(emp);
                 lblStatus.setText(empList.getCurrentEmployeeInfo());
             }
         }
     }//GEN-LAST:event_tblEmployeesMouseClicked
+
+    //Add button
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        try {
+            StringBuilder sb = new StringBuilder();
+
+            Validator.checkEmpty(txtEmployeeID, sb, "Please fill in this field");
+            Validator.checkEmpty(txtName, sb, "Please fill in this field");
+            Validator.checkID(txtEmployeeID, sb);
+            Validator.checkName(txtName, sb);
+            Validator.checkAge(txtAge, sb);
+            Validator.checkSalary(txtSalary, sb);
+            Validator.checkEmail(txtEmail, sb);
+
+            if (sb.length() > 0) {
+                JOptionPane.showMessageDialog(this, sb.toString(), "Invalid Data", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            Employee emp = new Employee();
+            emp.setEmployeeID(txtEmployeeID.getText());
+            emp.setName(txtName.getText());
+            emp.setAge(Integer.parseInt(txtAge.getText()));
+            emp.setEmail(txtEmail.getText());
+            emp.setSalary(Float.parseFloat(txtSalary.getText()));
+        
+            
+            if (empList.findByID(emp.getEmployeeID()) != null) {
+                    JOptionPane.showMessageDialog(this, "Employee id is existed and can't insert new employee");
+                    return;
+                }
+                empList.add(emp);
+
+            btnNewActionPerformed(evt);
+            empList.renderToTable(tblModel);
+            JOptionPane.showMessageDialog(this, "Add Successful");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+        
+        try {
+            empList.saveToFile();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
@@ -547,6 +616,7 @@ public class EmployeeManagerForm extends javax.swing.JFrame {
     private javax.swing.JLabel EmployeeId;
     private javax.swing.JLabel Name;
     private javax.swing.JLabel Salary;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnFirst;
@@ -571,5 +641,4 @@ public class EmployeeManagerForm extends javax.swing.JFrame {
     private javax.swing.JTextField txtSalary;
     // End of variables declaration//GEN-END:variables
 
-   
 }

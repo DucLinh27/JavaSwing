@@ -5,8 +5,10 @@
 package com.mycompany.helper;
 
 import java.awt.Color;
+import java.awt.TextField;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -14,7 +16,7 @@ import javax.swing.JTextField;
  * @author ducli
  */
 public class Validator {
-
+//Check Empt when input
     public static boolean checkEmpty(JTextField field, StringBuilder sb, String msg) {
         boolean ok = true;
         if (field.getText().equals("")) {
@@ -26,7 +28,27 @@ public class Validator {
         }
         return ok;
     }
-
+    public static boolean checkName(JTextField field, StringBuilder sb){
+        
+        boolean ok = true;
+        try {
+            String name = field.getText();
+            char[] characters = name.toCharArray();
+            for(char character:characters){
+                if(Character.isDigit(character)){
+                    sb.append("Name does not contain number");
+                    break;
+                }
+            }
+            
+        } catch (Exception e) {
+            sb.append("Error name: ");
+            ok = false;
+        }
+        return ok;
+    }
+    
+    //Check Age when input
     public static boolean checkAge(JTextField field, StringBuilder sb) {
         boolean ok = true;
 
@@ -35,7 +57,7 @@ public class Validator {
         }
         try {
             int age = Integer.parseInt(field.getText());
-            if (age < 18) {
+            if (age < 18 || age > 55) {
                 sb.append("Invalid age(18-55)\n");
                 field.setBackground(Color.gray);
                 ok = false;
@@ -50,7 +72,7 @@ public class Validator {
         }
         return ok;
     }
-
+   //Check Salary when input
     public static boolean checkSalary(JTextField field, StringBuilder sb) {
         boolean ok = true;
 
@@ -74,7 +96,29 @@ public class Validator {
         }
         return ok;
     }
-
+    
+    public static boolean checkID(JTextField field, StringBuilder sb) {
+        boolean ok = true;
+        
+        if (!checkEmpty(field, sb, "Salary is not define")) {
+            return false;
+        }
+        try {
+            String ID = field.getText();
+            Pattern p = Pattern.compile("[/.!@#$%&*()_+=|<>?{}\\[\\]~-]");
+            Matcher m = p.matcher(ID);
+            boolean isSpecialChar = m.find();
+            
+            if (isSpecialChar) {
+                sb.append("ID does not contains special characters!");
+            }
+        } catch (Exception e) {
+            sb.append("Invalid ID");
+            field.setBackground(Color.red);
+        }
+        return ok;
+    }
+    //Check Email when input
     public static boolean checkEmail(JTextField field, StringBuilder sb) {
         boolean ok = true;
 

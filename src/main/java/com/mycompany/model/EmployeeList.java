@@ -14,15 +14,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ducli
  */
-public class EmployeeList {
+public class EmployeeList extends Employee{
     public ArrayList<Employee> list = new ArrayList<>();
-    private String path = "C:\\Users\\ducli\\Documents\\NetBeansProjects\\employeeManager\\Employee.dat";
+    private String path = "C:\\Users\\ducli\\Documents\\NetBeansProjects\\employeeManager\\employee.txt";
     public void saveToFile() throws Exception{
         XFile.writeObject(path, list);  
         
     }
     
     
+    // load file
     public void loadFromFile() throws Exception{
         File file = new File(path);
         
@@ -34,12 +35,12 @@ public class EmployeeList {
         
     }
     
+    
+    // create DataEmployee
      private void initEmployeeData(){
         list.add(new Employee("1","Linh","linh@gmail.com",5000, 20));
         list.add(new Employee("2","Nguyen","nguyen@gmail.com",6000, 19));
         list.add(new Employee("3","Lam","lam@gmail.com",7000, 22));
-        
-
     }
     
     private int currentIndex = 0;
@@ -112,6 +113,7 @@ public class EmployeeList {
         tblModel.fireTableDataChanged();
     }
     
+    // find by ID
     public Employee findByID(String employeeId){
         for(Employee employee : list){
             if(employee.getEmployeeID().equals(employeeId)){
@@ -120,15 +122,18 @@ public class EmployeeList {
         }
         return null;
     }
-    public Employee findByName(String employeeName){
-        for(Employee employee : list){
-            if(employee.getName().equals(employeeName)){
-                return employee;
-            }  
-        }
-        return null;
-    }
     
+    //find by Name
+//    public Employee findByName(String employeeName){
+//        for(Employee employee : list){
+//            if(employee.getName().equals(employeeName)){
+//                return employee;
+//            }  
+//        }
+//        return null;
+//    }
+    
+    // delete by Id
     public boolean deleteById(String employeeId){
         for(Employee employee : list){
             if(employee.getEmployeeID().equals(employeeId)){

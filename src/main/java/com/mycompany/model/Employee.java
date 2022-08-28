@@ -10,6 +10,7 @@ import java.io.Serializable;
  *
  * @author ducli
  */
+// Serializable allowed save doi tuong
 public class Employee implements Serializable{
     private String employeeID, name, email;
     private float salary;

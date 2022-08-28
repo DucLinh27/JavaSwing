@@ -38,30 +38,4 @@ public class XFile {
         }
     }
 
-//    public void saveEmployee(ArrayList<Employee> list){
-//        try(PrintWriter pw = new PrintWriter(new File("Employee.dat")) ) {
-//            for(Employee emp : list){
-//                pw.println(emp.getName());
-//                pw.println(emp.getAge());
-//                pw.println(emp.getEmail());
-//                pw.println(emp.getSalary());
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Got an exception!");
-//        }
-//    }
-//    public ArrayList readEmployee() throws FileNotFoundException{
-//        ArrayList<Employee> list = new ArrayList<>();
-//        try(Scanner sc = new Scanner(new File("Employee.dat"))) {
-//            while(sc.hasNext()){
-//                Employee emp = new Employee();
-//                emp.setEmployeeID(sc.nextLine());
-//                emp.setName(sc.nextLine());
-//                emp.setAge(Integer.parseInt(sc.nextLine()));
-//                emp.setEmail(sc.nextLine());
-//                emp.setSalary(Integer.parseInt(sc.nextLine()));
-//            }
-//        } catch (Exception e) {
-//        }
-//    }
 }
